@@ -38,7 +38,8 @@
 
     <script>
        async function SavetoLocalStorage(event){
-        event.preventDefault();
+        try{
+            event.preventDefault();
             const name = event.target.name.value;
             const email = event.target.email.value;
             const contact = event.target.contact.value;
@@ -51,14 +52,18 @@
                 password
             }
     
-           await axios.post("http://localhost:3000/User",obj)
+           await axios.post("http://localhost:3000/User", obj)
             .then((response)=>{
                 alert("Succesfully Resister");
             })
             .catch((error)=>{
-               console.log(error);
+                alert("this user already resistered");
+                throw new Error(JSON.stringify(error));
             })
-        }
+        }catch(err){
+            console.log(error);
+        }       
+    }
     </script>
 </body>
 

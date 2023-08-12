@@ -6,18 +6,23 @@ const User = (req, res)=>{
         try{
             const {name , email, contact , password } = req.body;
             const saltroud=10;
-            bcrypt.hash(password , saltroud , (err , hash_pass)=>{
+            bcrypt.hash(password , saltroud , async(err , hash_pass)=>{
                 if(err){
                     throw new Error(JSON.stringify(err));
                 }
     
-                const data = user_model.create({
+                await user_model.create({
                     name:name,
                     email:email,
                     contact:contact,
                     password:hash_pass
                 })
-                res.status(201).JSON.stringify({newUser:data});
+                .then((data)=>{
+                    res.status(201).json({newUser:data});
+                })
+                .catch((err)=>{
+                    throw new Error(JSON.stringify(err));
+                })
             })
         }catch(err){
             console.log(err);

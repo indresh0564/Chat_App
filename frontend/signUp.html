@@ -31,6 +31,9 @@
                 <input type="text" required placeholder="Enter Password">
             </div>
             <button type="submit">Submit</button>
+            <div>
+                <a href="http://127.0.0.1:5500/frontend/login.html">Login</a>
+            </div>
         </form>
     </section>
 
@@ -54,10 +57,9 @@
     
            await axios.post("http://localhost:3000/User", obj)
             .then((response)=>{
-                alert("Succesfully Resister");
+                alert(response.data.message);
             })
             .catch((error)=>{
-                alert("this user already resistered");
                 throw new Error(JSON.stringify(error));
             })
         }catch(err){

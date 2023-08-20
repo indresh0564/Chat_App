@@ -1,5 +1,10 @@
 const user_model = require('../models/user');
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+
+function GenerateToken(id){
+return jwt.sign({userId:id},"secretKey");
+}
 
 const User = async(req, res)=>{
     try{
@@ -12,7 +17,7 @@ const User = async(req, res)=>{
                    throw new Error("somthing went wrong");
                }
                if(result===true){
-                   res.status(200).json({success:true, message:"User logged successfully"});
+                   res.status(200).json({success:true, message:"User logged successfully", token:GenerateToken(user[0].id) });
                }else{
                    res.status(400).json({success:false, message:"User password is incorrect"});  
                  }

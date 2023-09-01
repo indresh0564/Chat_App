@@ -26,6 +26,7 @@ const User = async(req, res)=>{
                         res.status(200).json({message:"Succesfully Resister", newUser:data});
                     })
                     .catch((err)=>{
+                        console.log(err);
                         throw new Error(JSON.stringify(err));
                     })
                 }) 

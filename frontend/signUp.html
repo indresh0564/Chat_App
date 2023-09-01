@@ -26,10 +26,10 @@
                 <label for="password">Password</label>
                 <input type="text" id="password" name="password" required placeholder="Enter Password">
             </div>
-            <div class="input-box">
+            <!-- <div class="input-box">
                 <label for="password">Retype Password</label>
                 <input type="text" required placeholder="Enter Password">
-            </div>
+            </div> -->
             <button type="submit">Submit</button>
             <div>
                 <a href="http://127.0.0.1:5500/frontend/login.html">Login</a>
@@ -58,6 +58,8 @@
            await axios.post("http://localhost:3000/User", obj)
             .then((response)=>{
                 alert(response.data.message);
+                window.location.href = "http://127.0.0.1:5500/frontend/login.html";
+                event.target.reset();
             })
             .catch((error)=>{
                 throw new Error(JSON.stringify(error));

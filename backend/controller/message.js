@@ -14,4 +14,14 @@ const userMessage = (req, res, next)=>{
     })
 }
 
-module.exports = {userMessage};
+const getMessages = (req, res, next)=>{
+    message_module.findAll()
+    .then((response)=>{
+        res.status(201).json({response:response});
+    })
+    .catch((error)=>{
+        console.log(error);
+    })
+}
+
+module.exports = {userMessage , getMessages};

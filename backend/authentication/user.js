@@ -10,7 +10,6 @@ const authenticate = (req, res, next)=>{
     .then((user)=>{
        req.user = user;
        next();
-       res.status(201).json({success:true});
     })
     .catch((err)=>{
        res.status(500).json({error:err});
